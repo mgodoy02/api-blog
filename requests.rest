@@ -1,53 +1,80 @@
-### Autores - todos
-GET http://localhost:3000/api/autores
+# =====================================================
+#  Actividad 8 - API Blog
+#  Pruebas con REST Client (VS Code)
+#  Arrancar antes el servidor: pnpm dev
+# =====================================================
 
-### Autores - por id
-GET http://localhost:3000/api/autores/1
+@baseUrl = http://localhost:3000/api
 
-### Autores - id que no existe → 404
-GET http://localhost:3000/api/autores/999
 
-### Autores - crear
-POST http://localhost:3000/api/autores
+# -----------------------------------------------------
+#  AUTORES
+# -----------------------------------------------------
+
+### Obtener todos los autores
+GET {{baseUrl}}/autores
+
+### Obtener un autor por id
+GET {{baseUrl}}/autores/1
+
+### Obtener un autor que no existe → 404
+GET {{baseUrl}}/autores/999
+
+### Crear un autor → 201
+POST {{baseUrl}}/autores
 Content-Type: application/json
 
 {
-  "nombre": "Juan álvarez",
+  "nombre": "Juan Álvarez",
   "email": "juan@mail.com",
-  "imagen": "https://i.pravatar.cc/150?img=2"
+  "imagen": "https://i.pravatar.cc/150?img=3"
 }
 
-### Autores - crear sin email → 400
-POST http://localhost:3000/api/autores
+### Crear un autor sin email → 400
+POST {{baseUrl}}/autores
 Content-Type: application/json
 
 {
   "nombre": "Sin Email"
 }
 
-
-### Posts - todos
-GET http://localhost:3000/api/posts
-
-### Posts - por id
-GET http://localhost:3000/api/posts/1
-
-### Posts - id que no existe → 404
-GET http://localhost:3000/api/posts/999
-
-### Posts - crear
-POST http://localhost:3000/api/posts
+### Crear un autor con email repetido → 500 (UNIQUE)
+POST {{baseUrl}}/autores
 Content-Type: application/json
 
 {
-  "titulo": "Introducción al master de full stack",
-  "descripcion": "En este post explicamos el temario del master de full stack",
-  "categoria": "Master Full stack",
+  "nombre": "Email Repetido",
+  "email": "juan@mail.com"
+}
+
+
+# -----------------------------------------------------
+#  POSTS
+#  Cada post se devuelve con los datos completos de su autor
+# -----------------------------------------------------
+
+### Obtener todos los posts
+GET {{baseUrl}}/posts
+
+### Obtener un post por id
+GET {{baseUrl}}/posts/1
+
+### Obtener un post que no existe → 404
+GET {{baseUrl}}/posts/999
+
+### Crear un post → 201
+POST {{baseUrl}}/posts
+Content-Type: application/json
+
+{
+  "titulo": "Introducción al Máster Full Stack",
+  "descripcion": "En este post explicamos el temario del Máster Full Stack.",
+  "categoria": "Máster Full Stack",
   "autor_id": 2
 }
 
-### Posts - crear sin categoría → 400
-POST http://localhost:3000/api/posts
+### Crear un post sin categoría → 400
+POST {{baseUrl}}/posts
 Content-Type: application/json
 
 {
@@ -56,8 +83,8 @@ Content-Type: application/json
   "autor_id": 1
 }
 
-### Posts - crear con autor que no existe → 400
-POST http://localhost:3000/api/posts
+### Crear un post con un autor que no existe → 400
+POST {{baseUrl}}/posts
 Content-Type: application/json
 
 {
@@ -67,11 +94,16 @@ Content-Type: application/json
   "autor_id": 999
 }
 
-### Posts de un autor
-GET http://localhost:3000/api/autores/1/posts
 
-### Posts de un autor que no existe → 404
-GET http://localhost:3000/api/autores/999/posts
+# -----------------------------------------------------
+#  POSTS DE UN AUTOR
+# -----------------------------------------------------
 
-### Posts de un autor sin posts → []
-GET http://localhost:3000/api/autores/3/posts
+### Obtener los posts de un autor
+GET {{baseUrl}}/autores/1/posts
+
+### Obtener los posts de un autor que no existe → 404
+GET {{baseUrl}}/autores/999/posts
+
+### Obtener los posts de un autor sin posts → []
+GET {{baseUrl}}/autores/3/posts
