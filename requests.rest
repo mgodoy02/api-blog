@@ -1,0 +1,31 @@
+### Autores
+GET http://localhost:3000/api/autores
+
+###
+GET http://localhost:3000/api/autores/3
+
+###
+GET http://localhost:3000/api/autores/3/posts
+
+###
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Prueba",
+  "email": "prueba@mail.com"
+}
+
+### Posts
+GET http://localhost:3000/api/posts
+
+###
+GET http://localhost:3000/api/posts/5
+
+###
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+  "titulo": "Hola"
+}
