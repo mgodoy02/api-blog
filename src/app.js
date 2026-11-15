@@ -6,6 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
 // Configuración de rutas
 // (aquí irá app.use('/api', ...) en el paso 4)
 
