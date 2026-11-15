@@ -34,6 +34,11 @@ const getById = async (postId) => {
   return result.map(formatPost);
 };
 
+const getByAutorId = async (autorId) => {
+  const [result] = await db.query(`${SELECT_POSTS} WHERE p.autor_id = ?`, [autorId]);
+  return result.map(formatPost);
+};
+
 const create = async ({ titulo, descripcion, categoria, autor_id }) => {
   const [result] = await db.query(
     'INSERT INTO posts (titulo, descripcion, categoria, autor_id) VALUES (?, ?, ?, ?)',
@@ -42,4 +47,4 @@ const create = async ({ titulo, descripcion, categoria, autor_id }) => {
   return result;
 };
 
-module.exports = { getAll, getById, create };
+module.exports = { getAll, getById,getByAutorId, create };

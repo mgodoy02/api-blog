@@ -25,7 +25,16 @@ const getById = async (req, res, next) => {
 
 const getByAutor = async (req, res, next) => {
   const { autorId } = req.params;
-  res.json(`Recupera los posts del autor ${autorId}`);
+  try {
+    const [autor] = await Autor.getById(autorId);
+    if (!autor) {
+      return res.status(404).json({ message: 'El autor no existe' });
+    }
+    const posts = await Post.getByAutorId(autorId);
+    res.json(posts);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const create = async (req, res, next) => {

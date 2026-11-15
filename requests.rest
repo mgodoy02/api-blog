@@ -12,8 +12,8 @@ POST http://localhost:3000/api/autores
 Content-Type: application/json
 
 {
-  "nombre": "Mario perez",
-  "email": "mario@mail.com",
+  "nombre": "Juan álvarez",
+  "email": "juan@mail.com",
   "imagen": "https://i.pravatar.cc/150?img=2"
 }
 
@@ -66,3 +66,12 @@ Content-Type: application/json
   "categoria": "General",
   "autor_id": 999
 }
+
+### Posts de un autor
+GET http://localhost:3000/api/autores/1/posts
+
+### Posts de un autor que no existe → 404
+GET http://localhost:3000/api/autores/999/posts
+
+### Posts de un autor sin posts → []
+GET http://localhost:3000/api/autores/3/posts
