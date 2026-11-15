@@ -1,31 +1,26 @@
-### Autores
+### Autores - todos
 GET http://localhost:3000/api/autores
 
-###
-GET http://localhost:3000/api/autores/3
+### Autores - por id
+GET http://localhost:3000/api/autores/1
 
-###
-GET http://localhost:3000/api/autores/3/posts
+### Autores - id que no existe → 404
+GET http://localhost:3000/api/autores/999
 
-###
+### Autores - crear
 POST http://localhost:3000/api/autores
 Content-Type: application/json
 
 {
-  "nombre": "Prueba",
-  "email": "prueba@mail.com"
+  "nombre": "Mario perez",
+  "email": "mario@mail.com",
+  "imagen": "https://i.pravatar.cc/150?img=2"
 }
 
-### Posts
-GET http://localhost:3000/api/posts
-
-###
-GET http://localhost:3000/api/posts/5
-
-###
-POST http://localhost:3000/api/posts
+### Autores - crear sin email → 400
+POST http://localhost:3000/api/autores
 Content-Type: application/json
 
 {
-  "titulo": "Hola"
+  "nombre": "Sin Email"
 }
